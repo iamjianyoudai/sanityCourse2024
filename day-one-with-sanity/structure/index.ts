@@ -19,4 +19,5 @@ export const structure: StructureResolver = (S) =>
       S.divider(),
       S.documentTypeListItem('artist').title('Artists').icon(UsersIcon),
       S.documentTypeListItem('venue').title('Venues').icon(PinIcon),
+      S.documentTypeListItem('article').title('Article').icon(PinIcon),
     ])

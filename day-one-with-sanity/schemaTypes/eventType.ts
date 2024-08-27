@@ -9,7 +9,7 @@ export const eventType = defineType({
   icon: CalendarIcon,
   groups: [
     {name: 'details', title: 'Details'},
-    {name: 'editorial', title: 'Editorial'},
+    {name: 'editorial', title: 'Editorial', default: true},
   ],
 
   fields: [
@@ -38,7 +38,7 @@ export const eventType = defineType({
         list: ['in-person', 'virtual'],
         layout: 'radio',
       },
-      validation: (rule) => rule.required().error('Event type is required'),
+      validation: (rule) => rule.required().info('This field is important for...'),
     }),
     // defineField({
     //   name: 'doorsOpen1',
