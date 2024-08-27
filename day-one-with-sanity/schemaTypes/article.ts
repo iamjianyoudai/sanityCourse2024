@@ -9,6 +9,7 @@ export default defineType({
     {name: 'dates', title: 'Dates', options: {columns: 2}},
   ],
   fields: [
+    defineField({name: 'Subtitle', type: 'string'}),
     defineField({name: 'publishedAt', type: 'datetime', fieldset: 'dates'}),
     defineField({name: 'updatedAt', type: 'datetime', fieldset: 'dates'}),
 
@@ -45,10 +46,25 @@ export default defineType({
       type: 'number',
       hidden: ({currentUser}) => {
         const isAdmin = currentUser?.roles.find((role) => role.name === 'administrator')
-        console.log('isAdmin -> ', isAdmin)
 
         return !isAdmin
       },
     }),
   ],
+  preview: {
+    select: {
+      title: 'title',
+      content: 'content',
+    },
+    prepare: ({title, content}) => {
+      const taskCount = content ? content.filter((b) => b.listItem === 'task').length : 0
+      const subtitle = content ? (taskCount === 1 ? '1 task' : `${taskCount} tasks`) : `No tasks`
+
+      return {
+        title,
+        subtitle,
+        media: '',
+      }
+    },
+  },
 })

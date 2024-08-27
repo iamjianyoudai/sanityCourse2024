@@ -1,3 +1,4 @@
+import {documentInternationalization} from '@sanity/document-internationalization'
 import {visionTool} from '@sanity/vision'
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
@@ -16,6 +17,14 @@ export default defineConfig({
     structureTool({
       structure,
       defaultDocumentNode,
+    }),
+    documentInternationalization({
+      // Required configuration
+      supportedLanguages: [
+        {id: 'es', title: 'Spanish'},
+        {id: 'en', title: 'English'},
+      ],
+      schemaTypes: ['exercise', 'artist'],
     }),
     visionTool(),
   ],
